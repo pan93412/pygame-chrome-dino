@@ -1,8 +1,8 @@
 from typing import Any
 import pygame
-from constants import MAXIMUM_SCORE_DIGIT, SCORE_FACTOR, WHITE
+from .constants import MAXIMUM_SCORE_DIGIT, SCORE_FACTOR, SCREEN_WIDTH, WHITE
 
-from sprite import Sprite
+from .sprite import Sprite
 
 
 SCORE_BEGIN_X = 1294
@@ -21,16 +21,22 @@ class Score(pygame.sprite.Sprite):
             for i in range(0, 10)
         ]
         self.extra_score = 0
+        self.previous_score = 0
 
         self.image = self._get_score_surface(self.get_score())
         self.rect = self.image.get_rect()
+        self.rect.x = SCREEN_WIDTH - self.rect.width - 10
+        self.rect.y = 10
 
 
     def get_score(self) -> int:
         # Score is based on the time.
         t = pygame.time.get_ticks() // SCORE_FACTOR
 
-        return t + self.extra_score
+        return t + self.extra_score - self.previous_score
+
+    def reset(self) -> None:
+        self.previous_score += self.get_score()
 
     def _get_score_surface(self, score: int) -> pygame.Surface:
         score_surface = pygame.Surface((MAXIMUM_SCORE_DIGIT * SCORE_WIDTH, SCORE_HEIGHT))
