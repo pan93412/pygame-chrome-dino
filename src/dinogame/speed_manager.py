@@ -1,4 +1,6 @@
 from math import floor
+import math
+import random
 from dinogame.constants import SPEED_UP_FACTOR
 from dinogame.score import Score
 
@@ -12,5 +14,4 @@ class SpeedManager:
         self.speed = 10 + floor(self.score.get_score() // SPEED_UP_FACTOR)
 
     def get_speed(self) -> int:
-        print(self.speed)
-        return self.speed
+        return random.randint(self.speed, floor(self.speed * 1.2))

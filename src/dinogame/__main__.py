@@ -1,4 +1,5 @@
 import pygame
+from dinogame.message import Message
 from dinogame.speed_manager import SpeedManager
 from dinogame.cactus import Cactus
 from dinogame.constants import FPS, SCREEN_HEIGHT, SCREEN_WIDTH, WHITE
@@ -32,6 +33,9 @@ group.add(cactus)
 # Ground
 ground = Ground(sprite, speed_manager)
 group.add(ground)
+# Message
+message = Message()
+group.add(message)
 # Score
 group.add(score)
 
@@ -45,8 +49,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            dino.jump()
+        if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE) or \
+           (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
+            if not game_over:
+                dino.jump()
+            else:
+                # restart game
+                score.reset()
+                cactus.reset()
+                dino.reset()
+                message.reset()
+                game_over = False
+        # cheat code
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+            if not dino.flyover:
+                message.show_message("Flyover mode activated!!")
+            dino.flyover = not dino.flyover
 
     # Update game
     if not game_over:
@@ -64,10 +82,6 @@ while running:
     if game_over:
         game_over_text = sprite.get(1294, 30, 381, 21)
         screen.blit(game_over_text, (SCREEN_WIDTH // 2 - game_over_text.get_width() // 2, SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2))
-        # for event in pygame.event.get():
-        #     if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-        #         score.reset()
-        #         game_over = False
 
     pygame.display.update()
     clock.tick(FPS)

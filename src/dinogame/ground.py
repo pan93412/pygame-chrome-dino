@@ -19,7 +19,7 @@ class Ground(pygame.sprite.Sprite):
         self.image = surface
         self.image.set_colorkey(BLACK)  # Set the background color as transparent
         self.rect = self.image.get_rect()
-        self.rect.y = SCREEN_HEIGHT - (self.rect.height)
+        self.rect.y = SCREEN_HEIGHT - self.rect.height
 
     def update(self, *args, **kwargs) -> None:
         self.rect.x -= self.speed_manager.get_speed()
