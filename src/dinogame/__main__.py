@@ -81,7 +81,10 @@ while running:
 
     if game_over:
         game_over_text = sprite.get(1294, 30, 381, 21)
-        screen.blit(game_over_text, (SCREEN_WIDTH // 2 - game_over_text.get_width() // 2, SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2))
+        screen.blit(game_over_text, (SCREEN_WIDTH // 2 - game_over_text.get_width() // 2, SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2 - 30))
+
+        replay_button = sprite.get(151, 135, 61, 53)
+        screen.blit(replay_button, (SCREEN_WIDTH // 2 - replay_button.get_width() // 2, SCREEN_HEIGHT // 2 - replay_button.get_height() // 2 + 30))
 
     pygame.display.update()
     clock.tick(FPS)
