@@ -1,11 +1,16 @@
+import importlib.resources
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 import pygame
 
-sprite_sheet_path = Path(__file__).parent / 'sprite_sheet.png'
+sprite_sheet = importlib.resources.open_binary('dinogame', 'sprite_sheet.png')
 
 class Sprite:
     def __init__(self):
-        self.image = pygame.image.load(sprite_sheet_path)
+        # create a temporary file to store the sprite sheet
+        with NamedTemporaryFile('wb') as f:
+            f.write(sprite_sheet.read())
+            self.image = pygame.image.load(f.name)
 
     def get(self, x: int, y: int, width: int, height: int) -> pygame.Surface:
         return self.image.subsurface((x, y, width, height))
