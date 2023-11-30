@@ -17,7 +17,12 @@ class Score(pygame.sprite.Sprite):
 
         self.sprite = sprite
         self.scores = [  # 0 - 9
-            self.sprite.get(SCORE_BEGIN_X + SCORE_WIDTH * i, SCORE_BEGIN_Y, SCORE_WIDTH, SCORE_HEIGHT)
+            self.sprite.get(
+                SCORE_BEGIN_X + SCORE_WIDTH * i,
+                SCORE_BEGIN_Y,
+                SCORE_WIDTH,
+                SCORE_HEIGHT,
+            )
             for i in range(0, 10)
         ]
         self.extra_score = 0
@@ -27,7 +32,6 @@ class Score(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = SCREEN_WIDTH // 2
         self.rect.y = 10
-
 
     def get_score(self) -> int:
         # Score is based on the time.
@@ -39,7 +43,9 @@ class Score(pygame.sprite.Sprite):
         self.previous_score += self.get_score()
 
     def _get_score_surface(self, score: int) -> pygame.Surface:
-        score_surface = pygame.Surface((MAXIMUM_SCORE_DIGIT * SCORE_WIDTH, SCORE_HEIGHT))
+        score_surface = pygame.Surface(
+            (MAXIMUM_SCORE_DIGIT * SCORE_WIDTH, SCORE_HEIGHT)
+        )
         score_surface.fill(WHITE)
 
         score_str = f"{score:06d}"

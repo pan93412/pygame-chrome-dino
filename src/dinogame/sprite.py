@@ -3,12 +3,13 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 import pygame
 
-sprite_sheet = importlib.resources.open_binary('dinogame', 'sprite_sheet.png')
+sprite_sheet = importlib.resources.open_binary("dinogame", "sprite_sheet.png")
+
 
 class Sprite:
     def __init__(self):
         # create a temporary file to store the sprite sheet
-        with NamedTemporaryFile('wb') as f:
+        with NamedTemporaryFile("wb") as f:
             f.write(sprite_sheet.read())
             self.image = pygame.image.load(f.name)
 

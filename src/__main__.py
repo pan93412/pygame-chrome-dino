@@ -49,8 +49,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE) or \
-           (event.type == pygame.MOUSEBUTTONDOWN and event.button == 1):
+        if (event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE) or (
+            event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
+        ):
             if not game_over:
                 dino.jump()
             else:
@@ -81,10 +82,22 @@ while running:
 
     if game_over:
         game_over_text = sprite.get(1294, 30, 381, 21)
-        screen.blit(game_over_text, (SCREEN_WIDTH // 2 - game_over_text.get_width() // 2, SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2 - 30))
+        screen.blit(
+            game_over_text,
+            (
+                SCREEN_WIDTH // 2 - game_over_text.get_width() // 2,
+                SCREEN_HEIGHT // 2 - game_over_text.get_height() // 2 - 30,
+            ),
+        )
 
         replay_button = sprite.get(151, 135, 61, 53)
-        screen.blit(replay_button, (SCREEN_WIDTH // 2 - replay_button.get_width() // 2, SCREEN_HEIGHT // 2 - replay_button.get_height() // 2 + 30))
+        screen.blit(
+            replay_button,
+            (
+                SCREEN_WIDTH // 2 - replay_button.get_width() // 2,
+                SCREEN_HEIGHT // 2 - replay_button.get_height() // 2 + 30,
+            ),
+        )
 
     pygame.display.update()
     clock.tick(FPS)

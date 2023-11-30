@@ -6,6 +6,7 @@ from dinogame.speed_manager import SpeedManager
 from .constants import BLACK, SCREEN_HEIGHT
 from .sprite import Sprite
 
+
 class Ground(pygame.sprite.Sprite):
     def __init__(self, sprite: Sprite, speed_manager: SpeedManager):
         super().__init__()

@@ -1,7 +1,13 @@
 from math import ceil
 import pygame
 
-from dinogame.constants import MESSAGE_SECOND, MESSAGE_WIDTH, SCREEN_WIDTH, TEXT_PX, WHITE
+from dinogame.constants import (
+    MESSAGE_SECOND,
+    MESSAGE_WIDTH,
+    SCREEN_WIDTH,
+    TEXT_PX,
+    WHITE,
+)
 from dinogame.score import SCORE_HEIGHT
 
 
@@ -21,7 +27,6 @@ class Message(pygame.sprite.Sprite):
         self.rect.centerx = SCREEN_WIDTH // 2
         self.rect.y = SCORE_HEIGHT + 20
 
-
     def show_message(self, message: str) -> None:
         self.message = message
         self.last_update_tick = pygame.time.get_ticks()
@@ -33,7 +38,9 @@ class Message(pygame.sprite.Sprite):
     def update(self) -> None:
         if self.message:
             rendered_font = self.font.render(self.message, True, (0, 0, 0))
-            self.image.blit(rendered_font, (MESSAGE_WIDTH // 2 - rendered_font.get_width() // 2, 0))
+            self.image.blit(
+                rendered_font, (MESSAGE_WIDTH // 2 - rendered_font.get_width() // 2, 0)
+            )
             self.message = None
 
         if self.last_update_tick:
