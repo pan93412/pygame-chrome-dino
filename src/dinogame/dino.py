@@ -26,12 +26,13 @@ class Dino(pygame.sprite.Sprite):
             return
 
         self.jumping = True
-        self.vel_y = -JUMP_SPEED_FACTOR * self.speed_manager.get_speed()
+        self.vel_y = -JUMP_SPEED_FACTOR * max(self.speed_manager.get_speed() // 4, 10)
 
     def update(self, *args, **kwargs) -> None:
         self.image = self.frame[pygame.time.get_ticks() // 200 % 2]
 
-        self.vel_y += GRAVITY
+        self.vel_y += GRAVITY * max(self.speed_manager.get_speed() // 10, 1)
+        print(self.vel_y)
         self.rect.y += self.vel_y
 
         edge = SCREEN_HEIGHT - self.rect.height - self.speed_manager.get_speed()
