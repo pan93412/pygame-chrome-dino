@@ -1,5 +1,4 @@
 from math import floor
-import math
 import random
 from dinogame.constants import SPEED_UP_FACTOR
 from dinogame.score import Score

@@ -1,5 +1,4 @@
 import importlib.resources
-from pathlib import Path
 from tempfile import NamedTemporaryFile
 import pygame
 
