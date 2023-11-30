@@ -2,6 +2,7 @@ from math import ceil
 import pygame
 
 from dinogame.constants import MESSAGE_SECOND, MESSAGE_WIDTH, SCREEN_WIDTH, TEXT_PX, WHITE
+from dinogame.score import SCORE_HEIGHT
 
 
 class Message(pygame.sprite.Sprite):
@@ -18,7 +19,7 @@ class Message(pygame.sprite.Sprite):
         self.font = pygame.font.SysFont("Arial", TEXT_PX)
 
         self.rect.centerx = SCREEN_WIDTH // 2
-        self.rect.y = 10
+        self.rect.y = SCORE_HEIGHT + 20
 
 
     def show_message(self, message: str) -> None:
