@@ -25,7 +25,7 @@ class Score(pygame.sprite.Sprite):
 
         self.image = self._get_score_surface(self.get_score())
         self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH - self.rect.width - 10
+        self.rect.centerx = SCREEN_WIDTH // 2
         self.rect.y = 10
 
 
