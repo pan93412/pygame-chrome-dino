@@ -15,4 +15,8 @@ packaging==23.2
 pathspec==0.11.2
 platformdirs==4.0.0
 pygame==2.5.2
+shiv==1.0.4
 typing-extensions==4.8.0
+# The following packages are considered to be unsafe in a requirements file:
+pip==23.3.1
+setuptools==69.0.2
